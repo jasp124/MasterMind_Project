@@ -1,6 +1,6 @@
 import pygame
 from settings import *
-from sprites import *
+from rest import *
 
 
 class Game:
