@@ -20,4 +20,4 @@ Mastermind is a puzzle game that challenges your logic and deduction skills. The
 
 To get started with this project, clone this repository using:
 ```bash
-git clone https://github.com/yourusername/mastermind-game.git
+git clone https://github.com/jasp123/mastermind-game.git
