@@ -13,9 +13,8 @@ Mastermind is a puzzle game that challenges your logic and deduction skills. The
 
 ## Features
 
-- Customizable number of pegs and colors.
-- Feedback after each guess.
-  
+Every Colour is fully customizable in the settings file.
+
 ## Installation
 
 To get started with this project, clone this repository using:
