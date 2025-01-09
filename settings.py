@@ -1,12 +1,11 @@
 import pygame
-LIGHTGREY = (1, 104, 125)#3
-DARKBROWN = (1, 123, 146)#1
-BGCOLOUR = (18, 43, 53) #2
-# COLORS (r, g, b)
+COLOUR1 = (1, 104, 125)
+COLOUR2 = (1, 123, 146)
+BGCOLOUR = (18, 43, 53) 
+# COLORS
 WHITE = (255, 255, 255)
 BLACK = (30, 30, 30)
 DARKGREY = (40, 40, 40)
-
 GREEN = (10, 210, 0)
 BLUE = (0, 0, 200)
 RED = (210, 0, 0)

@@ -16,11 +16,11 @@ class Pin:
             pygame.draw.circle(screen, tuple(x * 0.3 for x in self.colour), tuple(x + 1 for x in center), 15)
             pygame.draw.circle(screen, self.colour, center, 15)
         elif not self.revealed:
-            pygame.draw.circle(screen, LIGHTGREY, center, 15)
-            pygame.draw.circle(screen, LIGHTGREY, center, 15, 3)
+            pygame.draw.circle(screen, COLOUR1, center, 15)
+            pygame.draw.circle(screen, COLOUR1, center, 15, 3)
 
         else:
-            pygame.draw.circle(screen, DARKBROWN, center, 10)
+            pygame.draw.circle(screen, COLOUR2, center, 10)
 
 
 class CluePin(Pin):
@@ -42,7 +42,7 @@ class Board:
         self.clue_surface.fill(BGCOLOUR)
 
         self.colour_selection_surface = pygame.Surface((4*TILESIZE, 2*TILESIZE))
-        self.colour_selection_surface.fill(LIGHTGREY)
+        self.colour_selection_surface.fill(COLOUR1)
 
         self.colour_selection = []
         self.board_pins = []
@@ -79,16 +79,14 @@ class Board:
                     break
 
     def draw(self, screen):
-        # draw the placeholder for the coloured pins
         for pin in self.colour_selection:
             pin.draw(self.colour_selection_surface)
 
-        # draw the pins
+        
         for row in self.board_pins:
             for pin in row:
                 pin.draw(self.pins_surface)
 
-        # draw clue pins
         for row in self.board_clues:
             for pin in row:
                 pin.draw(self.clue_surface)
@@ -97,13 +95,12 @@ class Board:
         screen.blit(self.clue_surface, (4*TILESIZE, 0))
         screen.blit(self.colour_selection_surface, (0, 11*TILESIZE))
 
-        # draw row indicator
         pygame.draw.rect(screen, GREEN, (0, TILESIZE*self.tries, 4*TILESIZE, TILESIZE), 2)
 
         for x in range(0, WIDTH, TILESIZE):
             for y in range(0, HEIGHT, TILESIZE):
-                pygame.draw.line(screen, LIGHTGREY, (x, 0), (x, HEIGHT))
-                pygame.draw.line(screen, LIGHTGREY, (0, y), (WIDTH, y))
+                pygame.draw.line(screen, COLOUR1, (x, 0), (x, HEIGHT))
+                pygame.draw.line(screen, COLOUR1, (0, y), (WIDTH, y))
 
     def select_colour(self, mx, my, previous_colour):
         for pin in self.colour_selection:
@@ -120,10 +117,7 @@ class Board:
 
     def check_row(self):
         return all(pin.colour is not None for pin in self.board_pins[self.tries])
-        # for pin in self.board_pins[self.tries]:
-        #     if pin.colour is None:
-        #         return False
-        # return True
+        
 
     def check_clues(self):
         colour_list = []
@@ -146,7 +140,7 @@ class Board:
             pin.colour = colour
 
     def create_code(self):
-        # generate ramdon code
+        
         random_code = random.sample(COLOURS, 4)
         for i, pin in enumerate(self.board_pins[0]):
             pin.colour = random_code[i]

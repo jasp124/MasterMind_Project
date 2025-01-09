@@ -1,7 +1,9 @@
 import pygame
 from settings import *
 from rest import *
-
+import os
+from random import *
+from datetime import date
 
 class Game:
     def __init__(self):
@@ -42,11 +44,18 @@ class Game:
                         clues_colour_list = self.board.check_clues()
                         self.board.set_clues(clues_colour_list)
                         if self.check_win(clues_colour_list):
+                            
                             print("You Won!")
+                            update_or_create_file("scores.txt", True)
+                            
+
                             self.board.reveal_code()
                             self.end_screen()
                         elif not self.board.next_round():
                             print("Game Over!")
+                            
+                            update_or_create_file("scores.txt", False)
+                           
                             self.board.reveal_code()
                             self.end_screen()
 
@@ -66,6 +75,29 @@ class Game:
                     return
 
             self.draw()
+
+
+
+def update_or_create_file(self, win):
+    
+    filename="scores.txt"
+    day = date.today()
+    if os.path.exists(filename):
+        with open(filename, 'a') as file:
+            if win == True:
+                file.write("WON"+ str(day) + '\n')
+            else:
+                file.write("LOST" +str(day)+ '\n')
+            print(f"Text appended to existing file: {filename}")
+    else:
+        with open(filename, 'w') as file:
+            if win == True:
+                file.write("WON" + str(day)+ '\n')
+            else:
+                file.write("LOST" + day+str(day)+ '\n')
+            print(f"New file created and text added: {filename}")
+
+
 
 
 game = Game()
