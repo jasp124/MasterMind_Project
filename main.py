@@ -1,7 +1,6 @@
-import pygame
+import pygame, os
 from settings import *
 from rest import *
-import os
 from random import *
 from datetime import date
 
