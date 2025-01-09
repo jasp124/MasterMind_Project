@@ -17,7 +17,7 @@ class Pin:
             pygame.draw.circle(screen, self.colour, center, 15)
         elif not self.revealed:
             pygame.draw.circle(screen, LIGHTGREY, center, 15)
-            pygame.draw.circle(screen, BLACK, center, 15, 3)
+            pygame.draw.circle(screen, LIGHTGREY, center, 15, 3)
 
         else:
             pygame.draw.circle(screen, DARKBROWN, center, 10)
@@ -29,7 +29,7 @@ class CluePin(Pin):
         if self.colour is not None:
             pygame.draw.circle(screen, self.colour, center, 6)
         else:
-            pygame.draw.circle(screen, DARKBROWN, center, 5)
+            pygame.draw.circle(screen, (128,207,209), center, 5)
 
 
 class Board:
