@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    <script>
+        async function fetchScores() {
+            const response = await fetch('/scores');
+            const scores = await response.json();
+            const scoreboard = document.getElementById('scoreboard');
+            scoreboard.innerHTML = '';
+            scores.forEach(score => {
+                const scoreItem = document.createElement('li');
+                scoreItem.textContent = `${score.result} on ${score.date}`;
+                scoreboard.appendChild(scoreItem);
+            });
+        }
+
+        setInterval(fetchScores, 5000); // Fetch scores every 5 seconds
+    </script>
+</head>
+<body>
+    <h1>Scoreboard</h1>
+    <ul id="scoreboard"></ul>
+    <script>fetchScores();</script>
+</body>
+</html>

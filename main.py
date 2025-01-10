@@ -45,7 +45,7 @@ class Game:
                         if self.check_win(clues_colour_list):
                             
                             print("You Won!")
-                            update_or_create_file("scores.txt", True)
+                            update_or_create_file("results.txt", True)
                             
 
                             self.board.reveal_code()
@@ -53,7 +53,7 @@ class Game:
                         elif not self.board.next_round():
                             print("Game Over!")
                             
-                            update_or_create_file("scores.txt", False)
+                            update_or_create_file("results.txt", False)
                            
                             self.board.reveal_code()
                             self.end_screen()
@@ -79,7 +79,7 @@ class Game:
 
 def update_or_create_file(self, win):
     
-    filename="scores.txt"
+    filename="results.txt"
     day = date.today()
     if os.path.exists(filename):
         with open(filename, 'a') as file:
