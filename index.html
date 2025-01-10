@@ -4,25 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scoreboard</title>
-    <script>
-        async function fetchScores() {
-            const response = await fetch('/scores');
-            const scores = await response.json();
-            const scoreboard = document.getElementById('scoreboard');
-            scoreboard.innerHTML = '';
-            scores.forEach(score => {
-                const scoreItem = document.createElement('li');
-                scoreItem.textContent = `${score.result} on ${score.date}`;
-                scoreboard.appendChild(scoreItem);
-            });
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
         }
-
-        setInterval(fetchScores, 5000); // Fetch scores every 5 seconds
-    </script>
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <h1>Scoreboard</h1>
-    <ul id="scoreboard"></ul>
-    <script>fetchScores();</script>
+    <div class="container">
+        <h1>Scoreboard</h1>
+        <div id="score-summary">
+            <strong>Wins:</strong> <span id="wins">0</span><br>
+            <strong>Losses:</strong> <span id="losses">0</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Result</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="results"></tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchResults() {
+            try {
+                const response = await fetch('/get-results');
+                const data = await response.json();
+    
+                const resultsTable = document.getElementById('results');
+                const winsElem = document.getElementById('wins'); // Fixed ID
+                const lossesElem = document.getElementById('losses'); // Fixed ID
+    
+                resultsTable.innerHTML = '';
+                let wins = 0;
+                let losses = 0;
+    
+                data.forEach(entry => {
+                    const row = document.createElement('tr');
+                    const resultCell = document.createElement('td');
+                    const dateCell = document.createElement('td');
+    
+                    resultCell.textContent = entry.result;
+                    dateCell.textContent = entry.date;
+    
+                    row.appendChild(resultCell);
+                    row.appendChild(dateCell);
+                    resultsTable.appendChild(row);
+    
+                    if (entry.result.toLowerCase() === 'won') wins++; // Case-insensitive check
+                    if (entry.result.toLowerCase() === 'loss') losses++;
+                });
+    
+                winsElem.textContent = wins;
+                lossesElem.textContent = losses;
+            } catch (error) {
+                console.error('Error fetching results:', error);
+            }
+        }
+    
+        // Fetch results when the page loads
+        fetchResults();
+    </script>
+    
 </body>
 </html>
