@@ -86,14 +86,14 @@ def update_or_create_file(self, win):
             if win == True:
                 file.write("WON "+ str(day) + '\n')
             else:
-                file.write("LOST " +str(day)+ '\n')
+                file.write("LOSS " +str(day)+ '\n')
             print(f"Result added to the file called {filename}")
     else:
         with open(filename, 'w') as file:
             if win == True:
                 file.write("WON " + str(day)+ '\n')
             else:
-                file.write("LOST " + day+str(day)+ '\n')
+                file.write("LOSS " + day+str(day)+ '\n')
             print(f"New file created and result added to the file called {filename}")
 
 
