@@ -87,14 +87,14 @@ def update_or_create_file(self, win):
                 file.write("WON "+ str(day) + '\n')
             else:
                 file.write("LOST " +str(day)+ '\n')
-            print(f"Text appended to existing file: {filename}")
+            print(f"Result added to the file called {filename}")
     else:
         with open(filename, 'w') as file:
             if win == True:
                 file.write("WON " + str(day)+ '\n')
             else:
                 file.write("LOST " + day+str(day)+ '\n')
-            print(f"New file created and text added: {filename}")
+            print(f"New file created and result added to the file called {filename}")
 
 
 
