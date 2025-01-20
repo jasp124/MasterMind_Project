@@ -16,7 +16,7 @@ Mastermind is a puzzle game that challenges your logic and deduction skills. The
 
 Every Colour is fully customizable in the settings file.
 
-## Code Explanation
+## Code
 
 Breakdown of Components
 Flask Web Application (flask_app.py):
