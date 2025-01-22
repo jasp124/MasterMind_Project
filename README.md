@@ -70,4 +70,4 @@ Dynamic Results: Enhance the web interface to allow real-time updates of results
 
 To get started with this project, clone this repository using:
 ```bash
-git clone https://github.com/jasp123/mastermind-game.git
+git clone https://github.com/jasp124/mastermind-game.git
